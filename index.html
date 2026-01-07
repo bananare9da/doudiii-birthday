@@ -1,56 +1,159 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy 23rd Birthday 💙</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 23rd Doudi 💖</title>
+
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
-        color: white;
-        text-align: center;
-        overflow-x: hidden;
-    }
-    h1 { margin-top: 40px; }
-    img {
-        width: 80%;
-        max-width: 320px;
-        border-radius: 15px;
-        margin: 20px auto;
-        box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    }
-    .quote {
-        font-style: italic;
-        margin: 30px 20px;
-        font-size: 1.1em;
-    }
-    footer {
-        margin: 40px 0;
-        font-size: 0.9em;
-        opacity: 0.8;
-    }
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at top, #1a1a2e, #000);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+img {
+    width: 80%;
+    max-width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+}
+
+/* 🎂 Candles */
+.cake {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 20px auto;
+    max-width: 280px;
+}
+
+.candle {
+    width: 10px;
+    height: 40px;
+    background: linear-gradient(#ffb703, #fb8500);
+    border-radius: 3px;
+    position: relative;
+}
+
+.flame {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 14px;
+    background: radial-gradient(circle, #ffd166, #ff8800);
+    border-radius: 50% 50% 50% 50%;
+    animation: flicker 0.2s infinite alternate;
+    box-shadow: 0 0 10px rgba(255,200,100,0.9);
+}
+
+@keyframes flicker {
+    from { transform: translateX(-50%) scale(1); opacity: 0.9; }
+    to { transform: translateX(-50%) scale(1.15); opacity: 1; }
+}
+
+.quote {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 20px;
+}
+
+button {
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255,77,109,0.6);
+}
+
+/* ✨ Sparkles */
+.sparkle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    from { transform: translateY(-10px); }
+    to { transform: translateY(110vh); }
+}
 </style>
 </head>
 
 <body>
-<h1>Happy 23rd Birthday 💫</h1>
 
-<img src="us.jpg" alt="Us 💙">
+<div class="container">
 
-<p class="quote">
-"Some people become memories.  
-You became a reason."
-</p>
+    <img src="us.jpg" alt="Us 💕">
 
-<audio autoplay loop>
-    <source src="birthday.mp3" type="audio/mpeg">
-</audio>
+    <!-- 🎂 23 Candles -->
+    <div class="cake" id="cake"></div>
 
-<footer>
-Made with love 💙
-</footer>
+    <div class="quote">
+        “To my dear Doudi, you are a truly beautiful soul, and your presence lights up every moment.
+        On your special day, I just want you to know that the world is brighter with you in it,
+        and no one can ever shine quite like you. Happy BizBizDay!”
+    </div>
+
+    <button onclick="playMusic()">💖 Tap to play music 💖</button>
+
+</div>
+
+<audio id="music" src="birthday.mp3"></audio>
+
+<script>
+/* 🎵 Music */
+function playMusic() {
+    document.getElementById("music").play();
+}
+
+/* ✨ Sparkles */
+function createSparkle() {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.left = Math.random() * 100 + "vw";
+    sparkle.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 8000);
+}
+setInterval(createSparkle, 200);
+
+/* 🎂 Create 23 candles */
+const cake = document.getElementById("cake");
+for (let i = 0; i < 23; i++) {
+    const candle = document.createElement("div");
+    candle.className = "candle";
+
+    const flame = document.createElement("div");
+    flame.className = "flame";
+
+    candle.appendChild(flame);
+    cake.appendChild(candle);
+}
+</script>
+
 </body>
 </html>
